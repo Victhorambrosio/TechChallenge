@@ -4,13 +4,24 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <span>Ola, @User.Identity?.Name!</span>
-    <form asp-action="Logout" method="post">
+    <form asp-controller="Account" asp-action="Logout" method="post">
         @Html.AntiForgeryToken()
-        <button type="submit">Sair</button>
+        <button type="submit" class="btn btn-outline-primary btn-sm ms-2">Sair</button>
     </form>
 }
 else
 {
-    <a asp-controller="Account" asp-action="Register">Cadastro </a>
-    <a asp-controller="Account" asp-action="Login"> Entrar</a>
+    <div class="d-flex align-items-center gap-2">
+        <a asp-controller="Account"
+           asp-action="Register"
+           class="btn btn-primary btn-sm">
+            Cadastro
+        </a>
+
+        <a asp-controller="Account"
+           asp-action="Login"
+           class="btn btn-primary btn-sm">
+            Entrar
+        </a>
+    </div>
 }

@@ -1,69 +1,43 @@
 @model TechChallenge.Models.Projeto
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Excluir projeto";
 }
 
-<h1>Delete</h1>
+<div class="crud-form-page">
+    <div class="crud-form-header">
+        <h1 class="crud-form-title">Excluir projeto</h1>
+        <p class="crud-form-subtitle mb-0">Confirme abaixo se deseja remover este registro.</p>
+    </div>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Projeto</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descricao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Descricao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataInicio)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataInicio)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataFim)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataFim)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Pontuacao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Pontuacao)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Professor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Professor.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Categoria)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Categoria.Nome)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Equipe)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Equipe.Nome)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+    <div class="crud-form-panel">
+        <div class="crud-delete-box">
+            <p class="crud-delete-warning mb-3">Tem certeza que deseja excluir este projeto?</p>
+
+            <dl class="row crud-delete-list mb-0">
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Nome)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Nome)</dd>
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Descricao)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Descricao)</dd>
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.DataInicio)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.DataInicio)</dd>
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.DataFim)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.DataFim)</dd>
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Pontuacao)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Pontuacao)</dd>
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Professor)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Professor.Email)</dd>
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Categoria)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Categoria.Nome)</dd>
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Equipe)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Equipe.Nome)</dd>
+            </dl>
+        </div>
+
+        <form asp-action="Delete" class="crud-form-actions">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Excluir" class="btn btn-danger" />
+            <a asp-action="Index" class="btn btn-secondary">Voltar para a lista</a>
+        </form>
+    </div>
 </div>

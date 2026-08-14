@@ -1,16 +1,43 @@
-@model TechChallenge.LoginViewModel;
+@model TechChallenge.LoginViewModel
 @{
     ViewData["Title"] = "Login";
 }
-<form asp-action="Login" method="post">
-    <input asp-for="Email" class="form-control"/>
-    <span asp-validation-for="Email"></span>
 
-    <input asp-for="Senha" class="form-control" type="password"/>
-    <span asp-validation-for="Senha"></span>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Entrar</h4>
+                </div>
 
-    <input asp-for="Lembrar" type="checkbox"/>
-    <label asp-for="Lembrar">Lembrar-me</label>
+                <div class="card-body">
+                    <form asp-action="Login" method="post">
+                        <input asp-for="ReturnUrl" type="hidden" />
 
-    <button type="submit">Entrar</button>
-</form>
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Senha" class="form-label"></label>
+                            <input asp-for="Senha" class="form-control" type="password" />
+                            <span asp-validation-for="Senha" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input asp-for="Lembrar" class="form-check-input" type="checkbox" />
+                            <label asp-for="Lembrar" class="form-check-label">Lembrar-me</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

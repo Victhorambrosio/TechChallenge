@@ -1,63 +1,72 @@
 @model TechChallenge.Models.Projeto
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Criar projeto";
 }
 
-<h1>Create</h1>
-
-<h4>Projeto</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Descricao" class="control-label"></label>
-                <input asp-for="Descricao" class="form-control" />
-                <span asp-validation-for="Descricao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataInicio" class="control-label"></label>
-                <input asp-for="DataInicio" class="form-control" />
-                <span asp-validation-for="DataInicio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataFim" class="control-label"></label>
-                <input asp-for="DataFim" class="form-control" />
-                <span asp-validation-for="DataFim" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Pontuacao" class="control-label"></label>
-                <input asp-for="Pontuacao" class="form-control" />
-                <span asp-validation-for="Pontuacao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProfessorId" class="control-label"></label>
-                <select asp-for="ProfessorId" class ="form-control" asp-items="ViewBag.ProfessorId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="CategoriaId" class="control-label"></label>
-                <select asp-for="CategoriaId" class ="form-control" asp-items="ViewBag.CategoriaId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="EquipeId" class="control-label"></label>
-                <select asp-for="EquipeId" class ="form-control" asp-items="ViewBag.EquipeId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="crud-form-page">
+    <div class="crud-form-header">
+        <h1 class="crud-form-title">Criar projeto</h1>
+        <p class="crud-form-subtitle mb-0">Preencha os dados abaixo para adicionar um novo projeto.</p>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    <div class="crud-form-panel">
+        <div class="crud-form-body">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Nome" class="form-label"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Descricao" class="form-label"></label>
+                    <input asp-for="Descricao" class="form-control" />
+                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DataInicio" class="form-label"></label>
+                    <input asp-for="DataInicio" class="form-control" />
+                    <span asp-validation-for="DataInicio" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DataFim" class="form-label"></label>
+                    <input asp-for="DataFim" class="form-control" />
+                    <span asp-validation-for="DataFim" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Pontuacao" class="form-label"></label>
+                    <input asp-for="Pontuacao" class="form-control" />
+                    <span asp-validation-for="Pontuacao" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ProfessorId" class="form-label"></label>
+                    <select asp-for="ProfessorId" class="form-select" asp-items="ViewBag.ProfessorId"></select>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="CategoriaId" class="form-label"></label>
+                    <select asp-for="CategoriaId" class="form-select" asp-items="ViewBag.CategoriaId"></select>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="EquipeId" class="form-label"></label>
+                    <select asp-for="EquipeId" class="form-select" asp-items="ViewBag.EquipeId"></select>
+                </div>
+
+                <div class="crud-form-actions">
+                    <input type="submit" value="Salvar" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-secondary">Voltar para a lista</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 @section Scripts {

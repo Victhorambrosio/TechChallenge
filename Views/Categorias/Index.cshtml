@@ -1,66 +1,60 @@
 @model IEnumerable<TechChallenge.Categoria>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Categorias";
 }
 
-<h1>Index</h1>
+<div class="crud-page">
+    <div class="crud-hero">
+        <h1 class="crud-title">Categorias</h1>
+        <p class="crud-subtitle mb-0">Cadastro e gerenciamento das categorias.</p>
+    </div>
 
-<p>
-    <a asp-action="Create">Nova Categoria</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descricao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ativa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataCadastro)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
-            </td>
-            <td>
-                <span style="color:@item.Cor">@item.Cor</span>
-            </td>
-            <td>
-                @if(item.Ativa)
+    <div class="crud-panel">
+        <div class="crud-toolbar">
+            <a asp-action="Create" class="btn btn-primary">Criar novo</a>
+        </div>
+
+        <div class="crud-table-wrap">
+            <table class="table crud-table align-middle">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                        <th>@Html.DisplayNameFor(model => model.Descricao)</th>
+                        <th>@Html.DisplayNameFor(model => model.Cor)</th>
+                        <th>@Html.DisplayNameFor(model => model.Ativa)</th>
+                        <th>@Html.DisplayNameFor(model => model.DataCadastro)</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model)
                 {
-                    <span class="badge bg-success">Ativo</span>
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
+                        <td><span style="color:@item.Cor">@item.Cor</span></td>
+                        <td>
+                            @if(item.Ativa)
+                            {
+                                <span class="badge bg-success">Ativo</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Inativo</span>
+                            }
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.DataCadastro)</td>
+                        <td>
+                            <div class="crud-actions">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary btn-sm">Editar</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
                 }
-                else
-                {
-                    <span class="badge bg-secondary">Inativo</span>
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataCadastro)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

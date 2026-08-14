@@ -38,11 +38,19 @@ public class AccountController : Controller
         {
             return View(model);
         }
+
+        var allowedRoles = new[] { "Aluno", "Professor" };
+        if (!allowedRoles.Contains(model.Role))
+        {
+            ModelState.AddModelError(nameof(model.Role), "Selecione uma role válida.");
+            return View(model);
+        }
+
         // Verifica se email já existe
         var existingUser = await _userManager.FindByEmailAsync(model.Email);
         if (existingUser != null)
         {
-            ModelState.AddModelError("","Este email já está cadastrado.");
+            ModelState.AddModelError(nameof(model.Email), "Este email já está cadastrado.");
             return View(model);
         }
 
@@ -117,20 +125,24 @@ public class AccountController : Controller
             return View(model);
         }
 
-        var result = await _signInManager
-            .PasswordSignInAsync(model.Email,model.Senha,model.Lembrar,
-                lockoutOnFailure: false);
-            
-        if (result.Succeeded)
+        var user = await _userManager.FindByEmailAsync(model.Email);
+
+        if (user != null)
         {
-            if (!string.IsNullOrEmpty(model.ReturnUrl))
+            var senhaValida = await _userManager.CheckPasswordAsync(user, model.Senha);
+
+            if (senhaValida)
             {
-                return Redirect(model.ReturnUrl);
+                await _signInManager.SignInAsync(user, isPersistent: model.Lembrar);
+
+                if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+                {
+                    return Redirect(model.ReturnUrl);
+                }
+
+                return RedirectToAction("Index","Home");
             }
-            return RedirectToAction("Index","Home");
         }
-
-
 
         ModelState.AddModelError(
             "",
@@ -154,7 +166,7 @@ public class AccountController : Controller
         await _signInManager.SignOutAsync();
 
 
-        return RedirectToAction("Index","Tech");
+        return RedirectToAction("Index","Home");
     }
 
 

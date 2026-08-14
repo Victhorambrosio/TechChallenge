@@ -1,47 +1,47 @@
 @model IEnumerable<TechChallenge.Models.AlunoEquipe>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Alunos e Equipes";
 }
 
-<h1>Index</h1>
+<div class="crud-page">
+    <div class="crud-hero">
+        <h1 class="crud-title">Alunos e Equipes</h1>
+        <p class="crud-subtitle mb-0">Cadastro e gerenciamento dos vínculos entre alunos e equipes.</p>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Aluno)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Equipe)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataEntrada)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Aluno.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Equipe.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataEntrada)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <div class="crud-panel">
+        <div class="crud-toolbar">
+            <a asp-action="Create" class="btn btn-primary">Criar novo</a>
+        </div>
+
+        <div class="crud-table-wrap">
+            <table class="table crud-table align-middle">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Aluno)</th>
+                        <th>@Html.DisplayNameFor(model => model.Equipe)</th>
+                        <th>@Html.DisplayNameFor(model => model.DataEntrada)</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Aluno.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Equipe.Nome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DataEntrada)</td>
+                        <td>
+                            <div class="crud-actions">
+                                <a asp-action="Edit" asp-route-id="@item.AlunoId" class="btn btn-secondary btn-sm">Editar</a>
+                                <a asp-action="Delete" asp-route-id="@item.AlunoId" class="btn btn-danger btn-sm">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
