@@ -1,0 +1,38 @@
+@model Microsoft.AspNetCore.Identity.IdentityUser
+
+@{
+    ViewData["Title"] = "Editar Usuário";
+}
+
+<div class="container usuarios-container">
+
+    <h1>EDITAR USUÁRIO</h1>
+
+    <form method="post" asp-action="EditarUsuario" asp-controller="Admin">
+
+        <input type="hidden" name="id" value="@Model.Id" />
+
+        <div class="mb-3">
+            <label for="email" class="form-label">
+                E-MAIL
+            </label>
+
+            <input type="email"
+                   class="form-control"
+                   id="email"
+                   name="email"
+                   value="@Model.Email"
+                   required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            SALVAR ALTERAÇÕES
+        </button>
+
+        <a asp-action="Usuarios" class="btn btn-secondary">
+            CANCELAR
+        </a>
+
+    </form>
+
+</div>

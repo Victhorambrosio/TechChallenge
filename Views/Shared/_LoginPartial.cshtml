@@ -3,25 +3,38 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <span>Ola, @User.Identity?.Name!</span>
-    <form asp-controller="Account" asp-action="Logout" method="post">
-        @Html.AntiForgeryToken()
-        <button type="submit" class="btn btn-outline-primary btn-sm ms-2">Sair</button>
-    </form>
+    <div class="d-flex justify-content-center align-items-center">
+        <span class="tc-account-name">
+            @User.Identity?.Name
+        </span>
+        <form asp-action="Logout" method="post" class="tc-logout-form">
+            @Html.AntiForgeryToken()
+
+            <form asp-controller="Account" asp-action="Logout" type="submit" class="tc-nav-button tc-nav-button-danger">
+                @Html.AntiForgeryToken()
+                <button>
+                    <span>SAIR</span>
+                    <strong>↗</strong>
+                </button>
+            </form>
+        </form>
+    </div>
+
 }
 else
 {
-    <div class="d-flex align-items-center gap-2">
-        <a asp-controller="Account"
-           asp-action="Register"
-           class="btn btn-primary btn-sm">
-            Cadastro
+
+    <div class="tc-auth-nav">
+
+        <a asp-controller="Account" asp-action="Register" class="tc-nav-button tc-nav-button-register">
+            <span>REGISTRAR-SE</span>
+            <strong>+</strong>
         </a>
 
-        <a asp-controller="Account"
-           asp-action="Login"
-           class="btn btn-primary btn-sm">
-            Entrar
+        <a asp-controller="Account" asp-action="Login" class="tc-nav-button tc-nav-button-login">
+            <span>ENTRAR</span>
+            <strong>→</strong>
         </a>
+
     </div>
 }

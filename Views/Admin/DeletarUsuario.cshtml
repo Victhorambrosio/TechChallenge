@@ -1,0 +1,39 @@
+@model Microsoft.AspNetCore.Identity.IdentityUser
+
+@{
+    ViewData["Title"] = "Deletar Usuario";
+}
+
+<div class="container mt-4">
+
+    <h1>EXCLUIR USUÁRIO</h1>
+
+    <p>
+        Tem certeza que deseja excluir o usuário:
+    </p>
+
+    <strong>
+        @Model.Email
+    </strong>
+
+    <form method="post"
+          asp-action="ExcluirUsuarioConfirmado"
+          asp-controller="Admin"
+          class="mt-3">
+
+        <input type="hidden"
+               name="id"
+               value="@Model.Id" />
+
+        <button type="submit" class="btn btn-danger">
+            DELETAR
+        </button>
+
+        <a asp-action="Usuarios"
+           class="btn btn-secondary">
+            CANCELAR
+        </a>
+
+    </form>
+
+</div>

@@ -11,7 +11,7 @@ using TechChallenge.Models;
 
 namespace TechChallenge.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin, Professores")]
     public class EquipesController : Controller
     {
         private readonly AppDbContext _context;

@@ -11,7 +11,7 @@ using TechChallenge.Models;
 
 namespace TechChallenge.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin, Professor, Aluno")]
     public class ProjetosController : Controller
     {
         private readonly AppDbContext _context;
@@ -21,6 +21,7 @@ namespace TechChallenge.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         // GET: Projetos
         public async Task<IActionResult> Index()
         {
