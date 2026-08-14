@@ -7,16 +7,12 @@
         <span class="tc-account-name">
             @User.Identity?.Name
         </span>
-        <form asp-action="Logout" method="post" class="tc-logout-form">
+        <form asp-controller="Account" asp-action="Logout" method="post" class="tc-logout-form">
             @Html.AntiForgeryToken()
-
-            <form asp-controller="Account" asp-action="Logout" type="submit" class="tc-nav-button tc-nav-button-danger">
-                @Html.AntiForgeryToken()
-                <button>
-                    <span>SAIR</span>
-                    <strong>↗</strong>
-                </button>
-            </form>
+            <button type="submit" class="tc-nav-button tc-nav-button-danger">
+                <span>SAIR</span>
+                <strong>↗</strong>
+            </button>
         </form>
     </div>
 
@@ -24,17 +20,19 @@
 else
 {
 
-    <div class="tc-auth-nav">
+    <div class="tc-auth-nav d-flex align-items-center gap-2 flex-nowrap">
 
-        <a asp-controller="Account" asp-action="Register" class="tc-nav-button tc-nav-button-register">
-            <span>REGISTRAR-SE</span>
-            <strong>+</strong>
-        </a>
+        <form asp-controller="Account" asp-action="Register" method="get" class="m-0">
+            <button type="submit" class="tc-nav-button tc-nav-button-register btn btn-light">
+                REGISTRAR-SE
+            </button>
+        </form>
 
-        <a asp-controller="Account" asp-action="Login" class="tc-nav-button tc-nav-button-login">
-            <span>ENTRAR</span>
-            <strong>→</strong>
-        </a>
+        <form asp-controller="Account" asp-action="Login" method="get" class="m-0">
+            <button type="submit" class="tc-nav-button tc-nav-button-login btn btn-light">
+                ENTRAR
+            </button>
+        </form>
 
     </div>
 }
