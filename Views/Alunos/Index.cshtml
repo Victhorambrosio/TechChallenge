@@ -1,53 +1,89 @@
 @model IEnumerable<TechChallenge.Aluno>
 
 @{
-    ViewData["Title"] = "Alunos";
+    ViewData["Title"] = "Index";
 }
 
-<div class="crud-page">
-    <div class="crud-hero">
-        <h1 class="crud-title">Alunos</h1>
-        <p class="crud-subtitle mb-0">Cadastro e gerenciamento dos alunos.</p>
-    </div>
+<h1>Index</h1>
 
-    <div class="crud-panel">
-        <div class="crud-toolbar">
-            <a asp-action="Create" class="btn btn-primary">Criar novo</a>
-        </div>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 
-        <div class="crud-table-wrap">
-            <table class="table crud-table align-middle">
-                <thead>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.Nome)</th>
-                        <th>@Html.DisplayNameFor(model => model.Email)</th>
-                        <th>@Html.DisplayNameFor(model => model.Telefone)</th>
-                        <th>@Html.DisplayNameFor(model => model.DataNascimento)</th>
-                        <th>@Html.DisplayNameFor(model => model.DataCadastro)</th>
-                        <th>@Html.DisplayNameFor(model => model.Ativo)</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Nome)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Telefone)</td>
-                        <td>@Html.DisplayFor(modelItem => item.DataNascimento)</td>
-                        <td>@Html.DisplayFor(modelItem => item.DataCadastro)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Ativo)</td>
-                        <td>
-                            <div class="crud-actions">
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary btn-sm">Editar</a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Excluir</a>
-                            </div>
-                        </td>
-                    </tr>
-                }
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+
+<!-- Formulario de BUsca -->
+
+<form asp-action="Index" method="get">
+    <div class="d-flex gap-2">
+
+        <input type="text"
+                name="searchString"
+                value="@ViewBag.CurrentFilter"
+                class="form-control"
+                placeholder="Search by name or email" />
+
+                <button type="submit"
+                class="btn btn-primary">
+                </button>
+
+                <a asp-action="Index"
+                class="btn btn-secondary">Limpar</a>
+
+            </div>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataNascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataCadastro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCadastro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

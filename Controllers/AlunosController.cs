@@ -10,7 +10,7 @@ using TechChallenge;
 
 namespace TechChallenge.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class AlunosController : Controller
     {
         private readonly AppDbContext _context;
@@ -21,8 +21,14 @@ namespace TechChallenge.Controllers
         }
 
         // GET: Alunos
-        public async Task<IActionResult> Index()
-        {
+        public async Task<IActionResult> Index(string? searchString)
+        {  
+            var alunos = _context.Alunos.AsQueryable();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                alunos = alunos.Where(a => a.Nome.Contains(searchString));
+            }
+
             return View(await _context.Alunos.ToListAsync());
         }
 
@@ -82,7 +88,7 @@ namespace TechChallenge.Controllers
             }
             return View(aluno);
         }
-        
+
 
         // POST: Alunos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
